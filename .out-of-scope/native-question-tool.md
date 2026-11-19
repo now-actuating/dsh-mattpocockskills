@@ -1,5 +1,7 @@
 # Grilling through the harness's native question tool
 
+> **Fork exception:** This page records the upstream policy. In this DeepSeek Harness fork, `grilling` and the wrappers that load it use `ask_user_question` for interview rounds.
+
 Grilling sessions (`/grilling`, `/grill-me`, `/grill-with-docs`, and grilling inside other skills) ask their questions as plain chat text. Requests to route them through a harness's built-in question UI (Claude Code's `AskUserQuestion`, a host "question tool", a structured or batched questionnaire mode) are out of scope.
 
 ## Why this is out of scope
