@@ -12,7 +12,7 @@ This skill is written for the `skills` skillset in DSH. Its members are called a
 ## Terms
 
 - **Home repo**: a folder whose `AGENTS.md` (or `CLAUDE.md`) holds a **repo path list**. The agent may run here.
-- **Repo path list**: one line per repository in the home repo's `AGENTS.md`, giving its name, local path, and origin. Example: `dsh-btw: ./dsh-btw (https://github.com/now-actuating/dsh-btw)`.
+- **Repo path list**: the `## Other Repos` section of the home repo's `AGENTS.md` (or `CLAUDE.md`), one entry per repository with its name, purpose, local path, and remote, optionally split into area files. Example: `- dsh-btw (BTW side-question plugin): ./dsh-btw. Clone from https://github.com/now-actuating/dsh-btw if missing.` [POINTER-FORMAT.md](POINTER-FORMAT.md) is the single definition of the format and of how to resolve it.
 - **TARGET_ROOT**: the absolute path of the git repository root this work reads and writes.
 
 ## 1. Resolve the target
@@ -21,13 +21,14 @@ Take the first rule, top to bottom, that settles it.
 
 1. **Text argument.** In the user's message, the first word right after the skill token (`/skills-<skill>`) names the target. Accept a repository name, a relative path, or an absolute path. DSH injects the skill body for the `/name` token wherever it sits and passes the rest of the text through unchanged, so read the argument from the user's message itself. Match it against the candidates from rule 4, or check that it is an existing directory inside a git repository. If it matches nothing and is not an existing path, do not guess: ask as in rule 5, listing the candidates.
 2. **Conversation context.** A target was already settled in this conversation (see section 3), or the files and paths under discussion point at exactly one repository.
-3. **Single repository.** No `AGENTS.md` or `CLAUDE.md` in the current folder or its ancestors holds a repo path list, and the current folder is inside a git repository: use that repository's root (`git rev-parse --show-toplevel`) without asking. This is the original behaviour.
+3. **Single repository.** No `AGENTS.md` or `CLAUDE.md` in the current folder or its ancestors holds a `## Other Repos` heading, and the current folder is inside a git repository: use that repository's root (`git rev-parse --show-toplevel`) without asking. This is the original behaviour.
 4. **Candidates.**
-   - If a repo path list exists, its entries are the only candidates. Do not scan.
+   - If an `AGENTS.md` or `CLAUDE.md` in the current folder or an ancestor holds a `## Other Repos` heading, the nearest one is the repo path list, and its entries are the only candidates. Do not scan. Build the candidates by the resolving steps in [POINTER-FORMAT.md](POINTER-FORMAT.md): read each area file with the `read` tool, mark a candidate whose path is not on disk `missing`, and treat a name listed twice as a format error to ask about with every match and its path.
+   - When the user picks a `missing` candidate that has a remote, ask with `ask_user_question` whether to clone it to its listed path. On yes, clone it and use it; on no or a skipped question, stop and say why.
    - If there is no list and the current folder is not inside a git repository, scan for nested git repositories (section 4).
 5. **Ask.** When two or more candidates remain, or the choice is unclear, ask once with `ask_user_question`:
    - Put the recommended candidate first and append "(Recommended)" to its label.
-   - Show each candidate's name, relative path, and origin URL when known.
+   - Show each candidate's name, relative path, and origin URL when known, and `missing` where it applies.
    - When the work may span several repositories, add a "Home repo (multi-repo work)" option.
    - If the user skips the question, stop. Do not fall back to the home repo. Tell the user that no target was chosen and that `/skills-<skill> <repo>` picks one directly.
 

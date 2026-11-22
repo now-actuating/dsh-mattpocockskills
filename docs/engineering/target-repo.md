@@ -20,11 +20,15 @@ What you do instead is name the target after the skill you are running:
 
 ## Prerequisites
 
-The home repo lists its repositories in its `AGENTS.md`, one line each with a name, a local path and an origin:
+The home repo lists its repositories under an `## Other Repos` heading in its `AGENTS.md` (or `CLAUDE.md`), one entry each with a name, a one-line purpose, a local path and the remote to clone from:
 
 ```markdown
-dsh-btw: ./dsh-btw (https://github.com/now-actuating/dsh-btw)
+## Other Repos
+
+- dsh-btw (BTW side-question plugin): ./dsh-btw. Clone from https://github.com/now-actuating/dsh-btw if missing.
 ```
+
+The name is the word you type after a skill, so it has to be unique. Past about twenty repositories, the section can hold one line per area instead (`- billing (Payment services): see repos/billing.md`), and each area file holds that area's entries. The full format, including the older `name: path (remote)` line it still reads, is defined once in [POINTER-FORMAT.md](https://github.com/now-actuating/dsh-mattpocockskills/blob/main/skills/engineering/target-repo/POINTER-FORMAT.md). [setup-home-repo](https://github.com/now-actuating/dsh-mattpocockskills/blob/main/docs/engineering/setup-home-repo.md) writes the list for you.
 
 The list is optional but it wins: with a list, only its entries are candidates. Without one, the skill scans two levels down for git repositories, skipping hidden folders, `node_modules`, `vendor`, `dist`, `build`, `backups`, `artifacts`, `tmp`, and whatever the home repo's `.gitignore` ignores.
 
@@ -47,6 +51,12 @@ No. It asks whether to run `/skills-setup-matt-pocock-skills` for the target now
 **A repository I cloned inside the home repo is missing from the candidates.**
 The home repo's `.gitignore` probably ignores it, and the scan honours that. Add it to the repository list in `AGENTS.md`: the list beats the scan.
 
+**I picked a repository that is not cloned yet.**
+A listed path that is not on disk shows up as `missing`. Pick it and the skill asks whether to clone it from the entry's remote to that path; decline and it stops.
+
+**Two entries share a name.**
+That is a format error in the list. The skill shows both with their paths and asks which one you meant; rename one entry so the question goes away.
+
 **Does the agent pick up the target repository's `AGENTS.md`?**
 Yes. The skill reads the target's `AGENTS.md` or `CLAUDE.md` with the file-reading tool, which is what makes DSH load that folder's instructions; reading it through a shell command would not.
 
@@ -56,6 +66,7 @@ Yes. The skill reads the target's `AGENTS.md` or `CLAUDE.md` with the file-readi
 - New `GLOSSARY.md` entries, ADRs and `docs/agents/` files appear in the target repository, and nothing new appears in the home repo.
 - A second skill in the same conversation reuses the target without asking.
 - A misspelt repository name gets you a question with the candidates, not a guess.
+- With an `## Other Repos` list, the candidates are exactly its entries (area files included), never a folder scan.
 - In a single repository you never see a question about which repository to use.
 
 ## Where it fits

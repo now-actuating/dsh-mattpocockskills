@@ -100,7 +100,7 @@ Off the main flow entirely.
 
 Every repo-touching skill here first settles the **target repository** with **`/skills-target-repo`** (model-invoked, so the skills call it themselves). In a plain single repository nothing changes: the target is the repo you are in, and nobody asks.
 
-Working from a **home repo** (a folder whose `AGENTS.md` lists several repositories, one per line with name, local path and origin) is where it earns its keep:
+Working from a **home repo** (a folder whose `AGENTS.md` lists several repositories under `## Other Repos`, each with name, purpose, local path and remote) is where it earns its keep:
 
 | Situation | What happens |
 | --- | --- |
