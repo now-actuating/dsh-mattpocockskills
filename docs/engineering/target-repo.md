@@ -71,4 +71,4 @@ Yes. The skill reads the target's `AGENTS.md` or `CLAUDE.md` with the file-readi
 
 ## Where it fits
 
-A **reach-for-it-anytime standalone** that the other skills pull in as their first step, the way they pull in [grilling](https://aihero.dev/skills-grilling). It sits under [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills), because setup is per repository and this decides which one. For the whole map, see [ask-matt](https://aihero.dev/skills-ask-matt).
+A **reach-for-it-anytime standalone** that the other skills pull in as their first step, the way they pull in [grilling](https://aihero.dev/skills-grilling). It sits under [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills), because setup is per repository and this decides which one. [setup-home-repo](https://github.com/now-actuating/dsh-mattpocockskills/blob/main/docs/engineering/setup-home-repo.md) writes the list it reads. For the whole map, see [ask-matt](https://aihero.dev/skills-ask-matt).

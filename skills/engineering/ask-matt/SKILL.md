@@ -111,3 +111,7 @@ Working from a **home repo** (a folder whose `AGENTS.md` lists several repositor
 
 The skillset must stay named `skills`: every `skills-` call name depends on it.
 
+### Starting to work across several repositories
+
+**`/skills-setup-home-repo`** builds the home repo in the first place: run it from the folder that holds your repositories when you start working across more than one. It surveys them, moves shared and duplicate skills and docs into one home repo, and writes the `## Other Repos` list in its `AGENTS.md`, the exact list `/skills-target-repo` reads. It runs again in update mode when repositories come and go. It ends by offering **`/skills-setup-matt-pocock-skills`**, first for the home repo (cross-repository specs and issues live there) and then for each repository that has no `docs/agents/` yet.
+

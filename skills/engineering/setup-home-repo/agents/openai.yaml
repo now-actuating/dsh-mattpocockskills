@@ -1,0 +1,5 @@
+interface:
+  display_name: "Setup Home Repo"
+  short_description: "Build a home repo that points at your repos"
+policy:
+  allow_implicit_invocation: false
