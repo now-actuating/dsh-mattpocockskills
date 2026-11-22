@@ -96,12 +96,14 @@ When the installer asks which skills to take, include `setup-matt-pocock-skills`
 
 </details>
 
-### 2. Run `/setup-matt-pocock-skills`
+### 2. Run `/skills-setup-matt-pocock-skills`
 
-In your agent, run it once per repo. It will:
+This fork targets DSH, installed as the `skills` skillset, so every skill is called `skills-<skill>` (`/skills-grill-me`, `skills-grilling`). Keep the skillset named `skills`: the skills call each other by these names, so a rename means renaming every `skills-` call name too.
+
+In your agent, run it once per repo. Working from a home repo that holds several repositories, name the one you mean after any skill (`/skills-setup-matt-pocock-skills dsh-btw`); [target-repo](./skills/engineering/target-repo/SKILL.md) resolves it, or asks. It will:
 
 - Ask you which issue tracker you want to use (GitHub, GitLab, local files, or anything else you describe)
-- Ask you what labels you apply to tickets when you triage them (`/triage` uses labels)
+- Ask you what labels you apply to tickets when you triage them (`/skills-triage` uses labels)
 - Ask you where you want to save any docs we create
 
 ### 3. Bam - you're ready to go.
@@ -239,6 +241,7 @@ Skills I use daily for code work.
 - **[code-review](./skills/engineering/code-review/SKILL.md)**: Two-axis review of the diff since a fixed point: **Standards** (does it follow the repo's coding standards, plus a Fowler smell baseline?) and **Spec** (does it faithfully implement the originating issue/spec?), run as parallel sub-agents so neither pollutes the other.
 - **[pr](./skills/engineering/pr/SKILL.md)**: The shape a pull request body should take: a summary as the smallest visual that makes the change clear, before/after evidence that it works, and a merge-danger call (one-way or two-way door, plus blast radius).
 - **[wizard](./skills/engineering/wizard/SKILL.md)**: Generate an interactive bash wizard that walks a human through steps only they can perform: provisioning infrastructure, setting up credentials or CI secrets, walking an unfamiliar third-party dashboard, or running a one-off migration or cutover.
+- **[target-repo](./skills/engineering/target-repo/SKILL.md)**: Decide the target repository (TARGET_ROOT) when the agent runs from a home repo holding several repositories: a text argument after the skill (`/skills-<skill> <repo>`), the conversation, the single repo you are in, or one question over the candidates. The other repo-touching skills call it first.
 
 ### Productivity
 

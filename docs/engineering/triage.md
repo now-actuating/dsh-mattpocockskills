@@ -20,7 +20,7 @@ You invoke this by typing `/triage` and then describing what you want in plain l
 
 ## Prerequisites
 
-`triage` reads and writes your issue tracker, so [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) must first configure that tracker and its label vocabulary. The role names below are **canonical**. The label strings in your tracker may differ, and setup provides the mapping. If your tracker already uses the canonical names exactly, you have nothing to map and nothing to set up.
+`triage` reads and writes your issue tracker, so [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) must first configure that tracker and its label vocabulary. The role names below are **canonical**. The label strings in your tracker may differ, and setup provides the mapping. If your tracker already uses the canonical names exactly, you have nothing to map and nothing to set up. Run from a home repo holding several repositories, the skill first settles the **target repository** with [target-repo](https://github.com/now-actuating/dsh-mattpocockskills/blob/main/docs/engineering/target-repo.md), and the setup it needs is that repository's own: when the target has none, it asks whether to run setup for it now and carries on afterwards, and it stops if you decline rather than borrowing the home repo's.
 
 The tracker config also decides whether external pull requests count as a request surface, and who counts as external. That flag is off by default, and setup no longer asks about it. To bring PRs into scope, turn it on in `docs/agents/issue-tracker.md`.
 

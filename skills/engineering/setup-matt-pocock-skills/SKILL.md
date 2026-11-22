@@ -4,6 +4,8 @@ description: "Configure this repo for the engineering skills: set up its issue t
 disable-model-invocation: true
 ---
 
+First, call the Skill tool with "skills-target-repo" to decide the target repository. Every path and command in this skill is relative to that target repository (TARGET_ROOT).
+
 # Setup Matt Pocock's Skills
 
 Scaffold the per-repo configuration that the engineering skills assume:
@@ -18,15 +20,15 @@ This is a prompt-driven skill, not a deterministic script. Explore, present what
 
 ### 1. Explore
 
-Look at the current repo to understand its starting state. Read whatever exists; don't assume:
+Look at the target repository (TARGET_ROOT) to understand its starting state, not the folder the agent was started in. Read whatever exists; don't assume:
 
-- `git remote -v` and `.git/config`: is this a GitHub repo? Which one?
-- `AGENTS.md` and `CLAUDE.md` at the repo root: does either exist? Is there already an `## Agent skills` section in either?
+- `git -C <TARGET_ROOT> remote -v` and its git config: is this a GitHub repo? Which one?
+- `AGENTS.md` and `CLAUDE.md` at TARGET_ROOT: does either exist? Is there already an `## Agent skills` section in either?
 - `GLOSSARY.md` and `GLOSSARY-MAP.md` at the repo root, and the legacy `CONTEXT.md` / `CONTEXT-MAP.md`. If a legacy file exists, offer to `git mv` it to its `GLOSSARY` name and rewrite those names in `docs/agents/domain.md`.
 - `docs/adr/` and any `src/*/docs/adr/` directories
 - `docs/agents/`: does this skill's prior output already exist?
 - `.scratch/`: a sign that a local-markdown issue tracker convention is already in use
-- Is the `triage` skill installed? (a `triage` skill folder alongside this one, or `triage` in your available skills.) This decides whether Section B runs at all.
+- Is the `skills-triage` skill installed? (a `triage` skill folder alongside this one, or `skills-triage` in your available skills.) This decides whether Section B runs at all.
 - Monorepo signals: a `pnpm-workspace.yaml`, a `workspaces` field in `package.json`, or a populated `packages/*` with its own `src/`. These are present only in a genuinely large multi-package repo; their absence means single-context, which is almost every repo.
 
 ### 2. Present findings and ask
@@ -48,7 +50,7 @@ Default posture: these skills were designed for GitHub. If a `git remote` points
 
 Record the choice in `docs/agents/issue-tracker.md`. The GitHub and GitLab templates carry a "PRs as a request surface" flag, defaulted **off**. Leave it off and don't raise it: a user who wants external PRs in the triage queue can flip the flag in the file later.
 
-A GitHub or GitLab tracker needs a reachable repo. When the user picks one and no `git remote` points at that host, get the repo URL from them and wire it up (`git init` if needed, `git remote add origin <url>`) before going further. Done when `gh repo view` / `glab repo view` prints the project from inside this directory; if it can't, stop and tell the user what's missing.
+A GitHub or GitLab tracker needs a reachable repo. When the user picks one and no `git remote` points at that host, get the repo URL from them and wire it up in TARGET_ROOT (`git -C <TARGET_ROOT> init` if needed, `git -C <TARGET_ROOT> remote add origin <url>`) before going further. Done when `gh repo view` / `glab repo view`, run with `workdir` set to TARGET_ROOT, prints the project; if it can't, stop and tell the user what's missing.
 
 **Section B: Triage label vocabulary.** Skip this section entirely if the `triage` skill isn't installed (exploration told you), since an uninstalled skill needs no labels.
 
@@ -73,7 +75,7 @@ Let them edit before writing.
 
 ### 4. Write
 
-**Pick the file to edit:**
+**Pick the file to edit** (at TARGET_ROOT, never in a home repo the agent was started from):
 
 - If `CLAUDE.md` exists, edit it.
 - Else if `AGENTS.md` exists, edit it.
@@ -103,9 +105,9 @@ The block:
 
 Include the `### Triage labels` sub-block, and write `docs/agents/triage-labels.md`, only when `triage` is installed and Section B ran. When it isn't, both are omitted.
 
-When Section B ran on GitHub or GitLab, create each configured label the tracker lacks (`gh label create` / `glab label create`).
+When Section B ran on GitHub or GitLab, create each configured label the tracker lacks in the target repository (`gh label create -R <owner/repo>` / `glab label create -R <owner/repo>`).
 
-Then write the docs files using the seed templates in this skill folder as a starting point:
+Then write the docs files under TARGET_ROOT using the seed templates in this skill folder as a starting point:
 
 - [issue-tracker-github.md](./issue-tracker-github.md): GitHub issue tracker
 - [issue-tracker-gitlab.md](./issue-tracker-gitlab.md): GitLab issue tracker

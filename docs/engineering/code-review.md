@@ -23,6 +23,8 @@ You must supply the fixed point. If you do not, the skill asks for one rather th
 
 The Standards axis needs nothing. It reads whatever the repo documents (`CODING_STANDARDS.md`, `CONTRIBUTING.md`, and the like) and falls back on a built-in baseline when the repo documents nothing.
 
+Both axes read the **target repository** that [target-repo](https://github.com/now-actuating/dsh-mattpocockskills/blob/main/docs/engineering/target-repo.md) settles, which matters when you run from a home repo holding several repositories. When the target has no tracker configured, the skill asks whether to run setup for it first.
+
 The Spec axis needs a spec to exist and be findable. It looks in this order:
 
 1. Issue references in the commit messages (`#123`, `Closes #45`, a GitLab `!67`), fetched through the tracker doc.

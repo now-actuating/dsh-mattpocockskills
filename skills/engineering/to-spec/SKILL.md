@@ -4,9 +4,11 @@ description: "Turn the current conversation into a spec and publish it to the pr
 disable-model-invocation: true
 ---
 
+First, call the Skill tool with "skills-target-repo" to decide the target repository. Every path and command in this skill is relative to that target repository (TARGET_ROOT).
+
 This skill takes the current conversation context and codebase understanding and produces a spec. Do NOT interview the user; just synthesize what you already know.
 
-The issue tracker and triage label vocabulary should have been provided to you. If not, tell the user to run `/setup-matt-pocock-skills`.
+The issue tracker and triage label vocabulary should have been provided to you, from the target repository's `docs/agents/`. If not, follow the "Missing setup" step of `skills-target-repo`: ask whether to run `/skills-setup-matt-pocock-skills <target>` now, never borrow a home repo's configuration, and stop if the user declines.
 
 ## Process
 

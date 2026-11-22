@@ -20,7 +20,7 @@ Tickets that `to-tickets` produced are agent-ready by construction. Don't run [t
 
 ## Prerequisites
 
-`to-tickets` publishes into a tracker, so [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) must have configured one for this repo, along with the triage-label vocabulary. Either kind works: a real tracker like GitHub or Linear, or local markdown files under `.scratch/`, which work with no extra setup.
+`to-tickets` publishes into a tracker, so [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) must have configured one for this repo, along with the triage-label vocabulary. Either kind works: a real tracker like GitHub or Linear, or local markdown files under `.scratch/`, which work with no extra setup. Run from a home repo holding several repositories, the skill first settles the **target repository** with [target-repo](https://github.com/now-actuating/dsh-mattpocockskills/blob/main/docs/engineering/target-repo.md), and the setup it needs is that repository's own: when the target has none, it asks whether to run setup for it now and carries on afterwards, and it stops if you decline rather than borrowing the home repo's.
 
 ## Tracer bullets, not layers
 

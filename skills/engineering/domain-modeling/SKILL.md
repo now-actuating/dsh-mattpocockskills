@@ -3,13 +3,15 @@ name: domain-modeling
 description: Build and sharpen a project's domain model. Use when discussing codebase terminology, writing or editing a GLOSSARY.md, or recording or editing an ADR.
 ---
 
+First, call the Skill tool with "skills-target-repo" to decide the target repository. Every path and command in this skill is relative to that target repository (TARGET_ROOT).
+
 # Domain Modeling
 
 Actively build and sharpen the project's domain model as you design. This is the *active* discipline: challenging terms, inventing edge-case scenarios, and writing the glossary and decisions down the moment they crystallise. (Merely *reading* `GLOSSARY.md` for vocabulary is not this skill: that's a one-line habit any skill can do. This skill is for when you're changing the model, not just consuming it.)
 
 ## File structure
 
-Most repos have a single context:
+Most repos have a single context (`/` is the target repository root, TARGET_ROOT):
 
 ```
 /
@@ -21,7 +23,7 @@ Most repos have a single context:
 └── src/
 ```
 
-If a `GLOSSARY-MAP.md` exists at the root, the repo has multiple contexts. The map points to where each one lives:
+If a `GLOSSARY-MAP.md` exists at the target repository root, the repo has multiple contexts. The map points to where each one lives:
 
 ```
 /

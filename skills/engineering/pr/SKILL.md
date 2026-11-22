@@ -9,6 +9,8 @@ metadata:
     url: "https://github.com/humanlayer/skills/blob/main/plugins/show-me/skills/show-me/SKILL.md"
 ---
 
+First, call the Skill tool with "skills-target-repo" to decide the target repository. Every path and command in this skill is relative to that target repository (TARGET_ROOT).
+
 Use this template for writing the PR body:
 
 ```markdown

@@ -3,6 +3,8 @@ name: writing-for-agents
 description: Writing documents for agents. Use when creating or editing skills, or modifying AGENTS.md or CLAUDE.md.
 ---
 
+First, call the Skill tool with "skills-target-repo" to decide the target repository. Every path and command in this skill is relative to that target repository (TARGET_ROOT). An `AGENTS.md` / `CLAUDE.md` you create or edit is TARGET_ROOT's. When it is unclear whether the home repo or a repository inside it is meant, ask.
+
 Reference for writing any document an agent consumes: a skill, an `AGENTS.md` / `CLAUDE.md`, a doc reached by a pointer. The packaging differs; the writing does not: the same levers make each one predictable, since the agent takes the same _process_ every run rather than producing the same output.
 
 When the document you're writing is a skill, read [`SKILL-MECHANICS.md`](SKILL-MECHANICS.md) for frontmatter, invocation choice, and router skills.

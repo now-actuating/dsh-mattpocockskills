@@ -8,13 +8,13 @@ It is a prompt-driven skill, not a deterministic script. It reads your `git remo
 
 ## When to reach for it
 
-You invoke this by typing `/setup-matt-pocock-skills`; the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) won't reach for it on its own. Its metadata marks it non-invokable on purpose, so no other skill can fire it for you.
+You invoke this by typing `/setup-matt-pocock-skills`; the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) won't reach for it on its own. Its metadata marks it non-invokable on purpose, so no other skill fires it on its own. The closest thing is the offer: a skill that finds its target repository unconfigured asks whether to run setup now, and runs it only on your yes.
 
 Reach for it once per repo, before the first use of any other engineering skill. If [triage](https://aihero.dev/skills-triage), [to-spec](https://aihero.dev/skills-to-spec), [to-tickets](https://aihero.dev/skills-to-tickets) or [wayfinder](https://aihero.dev/skills-wayfinder) start guessing where your issues go, or apply labels your tracker doesn't have, this repo has not been set up yet. You can run it in a repo halfway through a project. The skill reads what is already there, so no earlier work is lost.
 
 ## Prerequisites
 
-It writes into the repo you run it in:
+It writes into the **target repository**: the repo you run it in, or, from a home repo holding several repositories, the one you name (`/skills-setup-matt-pocock-skills dsh-btw`) or pick when [target-repo](https://github.com/now-actuating/dsh-mattpocockskills/blob/main/docs/engineering/target-repo.md) asks. Its `git remote` check, `gh repo view` and label creation run against that repository too, and nothing lands in the home repo:
 
 | It writes | Where |
 | --- | --- |

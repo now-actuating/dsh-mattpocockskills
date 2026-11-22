@@ -19,7 +19,7 @@ Reach for it when the build is too big for one agent [session](https://www.aiher
 
 ## Prerequisites
 
-`to-spec` publishes the spec as an issue, so [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) must first configure a tracker and the triage-label vocabulary for this repo. Either kind of tracker works: a real tracker like GitHub, or local markdown files under `.scratch/`, which work with no extra setup.
+`to-spec` publishes the spec as an issue, so [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) must first configure a tracker and the triage-label vocabulary for this repo. Either kind of tracker works: a real tracker like GitHub, or local markdown files under `.scratch/`, which work with no extra setup. Run from a home repo holding several repositories, the skill first settles the **target repository** with [target-repo](https://github.com/now-actuating/dsh-mattpocockskills/blob/main/docs/engineering/target-repo.md), and the setup it needs is that repository's own: when the target has none, it asks whether to run setup for it now and carries on afterwards, and it stops if you decline rather than borrowing the home repo's.
 
 ## The spec is a decision record
 

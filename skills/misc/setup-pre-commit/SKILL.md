@@ -3,6 +3,8 @@ name: setup-pre-commit
 description: Set up Husky pre-commit hooks with lint-staged (Prettier), type checking, and tests in the current repo. Use when user wants to add pre-commit hooks, set up Husky, configure lint-staged, or add commit-time formatting/typechecking/testing.
 ---
 
+First, call the Skill tool with "skills-target-repo" to decide the target repository. Every path and command in this skill is relative to that target repository (TARGET_ROOT). Install the hooks, config, and scripts into TARGET_ROOT. When it is unclear whether the home repo or a repository inside it is meant, ask.
+
 # Setup Pre-Commit Hooks
 
 ## What This Sets Up
